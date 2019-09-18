@@ -22,7 +22,8 @@ defmodule SecretHandshake do
     check = fn code, command_value -> (code &&& command_value ) == command_value end
     should_reverse = check.(code, 16)
 
-    handshake = Enum.reduce(list_of_commands, [], fn {command, value}, acc -> 
+    handshake = Enum.reduce(list_of_commands, [], fn {command, value}, acc ->
+      #TODO the acc list is being read all the way for each reduce() iteraction to put a new element
       if check.(code, value), do: acc ++ [command], else: acc
     end)
   
