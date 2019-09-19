@@ -7,6 +7,7 @@ defmodule RnaTranscription do
   iex> RnaTranscription.to_rna('ACTG')
   'UGAC'
   """
+
   @spec to_rna([char]) :: [char]
   def to_rna(dna) do
     List.to_string(dna)
@@ -17,6 +18,6 @@ defmodule RnaTranscription do
       "T" -> 'A'
       "A" -> 'U'
     end)
-    |> List.to_charlist()
+    |> Enum.reduce(fn rna, acc -> acc ++ rna end)
   end
 end
